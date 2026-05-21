@@ -27,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
 
             // 1. 初始化 Secrets Manager 客户端 (自动读取机器的 LabRole 凭证)
             $client = new SecretsManagerClient([
-                'region'  => 'us-east-1',
+                'region'  => env('AWS_DEFAULT_REGION'),
                 'version' => 'latest'
             ]);
 
-            $secretName = 'wipapp/db/credential';
+            $secretName = env('AWS_SECRET_NAME');
 
             try {
                 // 2. 从云端获取密文
